@@ -36,7 +36,7 @@ form.addEventListener('submit', function (evt) {
 
   getImages().then(function (data) {
     if (data.length === 0) {
-      Notify.failure('Nothing found by Your request');
+      Notify.failure('Sorry, there are no images matching your search query. Please try again.');
       loadMoreBtn.style.display = 'none';
       return;
     }

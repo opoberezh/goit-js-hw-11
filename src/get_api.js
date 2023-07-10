@@ -61,6 +61,7 @@ export async function getImages() {
 
     return imagesData;
   } catch (error) {
+    console.log(error)
     Notify.failure('Помилка: ' + error.message);
   }
 }

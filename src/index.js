@@ -14,6 +14,8 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 let form = document.querySelector('#search-form');
 let gallery = document.querySelector('.gallery');
 let loadMoreBtn = document.querySelector('.load-more');
+let btnUp = document.getElementById('to-top-btn');
+let btnUpWrapper = document.querySelector('.btn-up');
 
 loadMoreBtn.style.display = 'none';
 
@@ -70,3 +72,35 @@ loadMoreBtn.addEventListener('click', function () {
     });
   });
 });
+
+
+//Button smooth scroll up
+
+window.addEventListener('scroll', scrollFunction);
+
+function scrollFunction() {
+  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    btnUpWrapper.style.display = 'flex';
+  } else {
+    btnUpWrapper.style.display = 'none';
+  }
+}
+    btnUp.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+
+
+   /* smooth scrolling */
+   function scrollPage() {
+    const { height: cardHeight } = document.querySelector("gallery")
+      .firstElementChild.getBoundingClientRect();
+  
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: 'smooth',
+    });
+  }
+
+
+  scrollPage();

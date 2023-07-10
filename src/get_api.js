@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+
 let BASE_URL = 'https://pixabay.com/api/';
 let API_KEY = '38119446-41822b71524f1b118d79216dc';
 let searchQuery = '';
@@ -11,6 +12,7 @@ let firstSearch = true;
 // restart searching
 export function updateFirstSearch(state) {
   firstSearch = state;
+ 
 }
 
 // to go to next page

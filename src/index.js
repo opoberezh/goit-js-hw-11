@@ -163,7 +163,7 @@ async function onSubmit(evt) {
       loadMoreBtn.hidden = false;
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
     galleryItemsEl.innerHTML = '';
     loadMoreBtn.hidden = true;
     currentPage = 1;
@@ -193,7 +193,7 @@ async function onClickLoadMoreBtn() {
     );
     galleryLightBox.refresh();
   } catch (error) {
-    console.error(error);
+    console.log(error);
     galleryItemsEl.innerHTML = '';
     loadMoreBtn.hidden = true;
     currentPage = 1;

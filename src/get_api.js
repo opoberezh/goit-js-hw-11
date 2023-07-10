@@ -74,7 +74,7 @@
 
 
 
-import axios from 'axios';
+// import axios from 'axios';
 import { nameImages, currentPage } from './index';
 
 const BASE_URL = 'https://pixabay.com/api/';

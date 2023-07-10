@@ -55,7 +55,7 @@ form.addEventListener('submit', function (evt) {
 
 loadMoreBtn.addEventListener('click', function () {
   nextPage().then(function (data) {
-    if (data.length === 0) {
+    if (data.hits.length === 0) {
       Report.info(
         "We're sorry",
         "but you've reached the end of search results.",
@@ -91,3 +91,16 @@ function scrollFunction() {
 
 
 
+   /* smooth scrolling */
+//    function scrollPage() {
+//     const { height: cardHeight } = document.querySelector("gallery")
+//       .firstElementChild.getBoundingClientRect();
+  
+//     window.scrollBy({
+//       top: cardHeight * 2,
+//       behavior: 'smooth',
+//     });
+//   }
+
+
+//   scrollPage();

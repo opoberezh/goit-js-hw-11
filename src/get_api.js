@@ -62,7 +62,7 @@ export async function getImages() {
     return imagesData;
   } catch (error) {
     console.log(error)
-    Notify.failure('Помилка: ' + error.message);
+    Notify.failure('Sorry, there are no images matching your search query. Please try again.');
   }
 }
 

@@ -74,20 +74,6 @@
 // });
 
 
-// //Button smooth scroll up
-
-// window.addEventListener('scroll', scrollFunction);
-
-// function scrollFunction() {
-//   if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-//     btnUpWrapper.style.display = 'flex';
-//   } else {
-//     btnUpWrapper.style.display = 'none';
-//   }
-// }
-//     btnUp.addEventListener('click', () => {
-//     window.scrollTo({ top: 0, behavior: 'smooth' });
-// });
 
 
 
@@ -109,17 +95,20 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { getImages } from './get_api';
-import { markupGellery } from './markup';
+import { markupGallery } from './markup';
 
 const formEl = document.querySelector('#search-form');
 const inputEl = document.querySelector('#search-form input');
 const galleryItemsEl = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
-let nameImages = '';
+const btnUp = document.getElementById('to-top-btn');
+const btnUpWrapper = document.querySelector('.btn-up');
+
+let imgsName = '';
 let currentPage = 1;
 let totalPage = 0;
 
-export { nameImages, currentPage };
+export {imgsName, currentPage };
 
 formEl.addEventListener('submit', onSubmit);
 loadMoreBtn.addEventListener('click', onClickLoadMoreBtn);
@@ -132,18 +121,18 @@ async function onSubmit(evt) {
     elements: { searchQuery },
   } = evt.currentTarget;
 
-  nameImages = searchQuery.value.trim();
+  imgsName = searchQuery.value.trim();
   currentPage = 1;
   loadMoreBtn.hidden = true;
 
-  if (nameImages === '') {
+  if (imgsName === '') {
     evt.currentTarget.reset();
     return;
   }
 
   try {
     const dataGallery = await getImages();
-    galleryItemsEl.innerHTML = markupGellery(dataGallery.data.hits);
+    galleryItemsEl.innerHTML = markupGallery(dataGallery.data.hits);
     galleryLightBox.refresh();
     if (dataGallery.data.hits.length) {
       Notify.success(`Hooray! We found ${dataGallery.data.totalHits} images.`);
@@ -189,7 +178,7 @@ async function onClickLoadMoreBtn() {
     const dataGalleryPagination = await getImages();
     galleryItemsEl.insertAdjacentHTML(
       'beforeend',
-      markupGellery(dataGalleryPagination.data.hits)
+      markupGallery(dataGalleryPagination.data.hits)
     );
     galleryLightBox.refresh();
   } catch (error) {
@@ -199,3 +188,18 @@ async function onClickLoadMoreBtn() {
     currentPage = 1;
   }
 }
+
+//Button smooth scroll up
+
+window.addEventListener('scroll', scrollFunction);
+
+function scrollFunction() {
+  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    btnUpWrapper.style.display = 'flex';
+  } else {
+    btnUpWrapper.style.display = 'none';
+  }
+}
+    btnUp.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
